@@ -16,7 +16,9 @@ export default function App() {
   }
   function handleToggleItem(id) {
     setItems((items) =>
-      items.map((item) => (item.id ? { ...item, packed: !item.packed } : item))
+      items.map((item) =>
+        item.id === id ? { ...item, packed: !item.packed } : item
+      )
     );
   }
   function handleClearList() {
@@ -31,7 +33,7 @@ export default function App() {
       <Logo />
       <Form onAddItems={handleAddItems} />
       <PackingList
-        item={items}
+        items={items}
         onDeleteItem={handleDeleteItem}
         onToggleItem={handleToggleItem}
         onClearItem={handleClearList}
