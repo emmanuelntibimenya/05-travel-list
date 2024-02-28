@@ -23,6 +23,9 @@ export default function PackingList({
       .sort((a, b) => Number(a.packed) - Number(b.packed));
   }
 
+  // Default to empty array if sortedItems is still undefined
+  sortedItems = sortedItems || [];
+
   return (
     <div className="list">
       <ul>
