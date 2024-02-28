@@ -10,21 +10,20 @@ export default function PackingList({
   const [sortBy, setSortBy] = useState("input");
 
   // Initialize sortedItems with items as the default
-  let sortedItems = items;
-
+  let sortedItems;
+  if (sortBy === "input") sortedItems = items;
   // Sort the items based on the selected sortBy option
-  if (sortBy === "description") {
+  if (sortBy === "description")
     sortedItems = items
       .slice()
       .sort((a, b) => a.description.localeCompare(b.description));
-  } else if (sortBy === "packed") {
+  if (sortBy === "packed")
     sortedItems = items
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
-  }
 
   // Default to empty array if sortedItems is still undefined
-  sortedItems = sortedItems || [];
+  //sortedItems = sortedItems || [];
 
   return (
     <div className="list">
