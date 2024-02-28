@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Item from "./Item";
 
-// components
 export default function PackingList({
   items,
   onDeleteItem,
@@ -9,16 +8,21 @@ export default function PackingList({
   onClearItem,
 }) {
   const [sortBy, setSortBy] = useState("input");
-  let sortedItems;
-  if (sortBy === "input") sortedItems = items;
-  if (sortBy === "description")
+
+  // Initialize sortedItems with items as the default
+  let sortedItems = items;
+
+  // Sort the items based on the selected sortBy option
+  if (sortBy === "description") {
     sortedItems = items
       .slice()
       .sort((a, b) => a.description.localeCompare(b.description));
-  if (sortBy === "packed")
+  } else if (sortBy === "packed") {
     sortedItems = items
       .slice()
       .sort((a, b) => Number(a.packed) - Number(b.packed));
+  }
+
   return (
     <div className="list">
       <ul>
